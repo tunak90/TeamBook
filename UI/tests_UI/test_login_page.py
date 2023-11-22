@@ -11,11 +11,12 @@ import os
 
 
 def test_login_positive(browser):
-    page = LoginPage(browser, os.environ['LINK_LOGIN'])
+    link = "https://web.teambooktest.com/login"
+    page = LoginPage(browser, link)
     page.open()
-    WebDriverWait(browser, 10).until(
-        EC.presence_of_element_located(LoginPageLocators.LOGIN_EMAIL)
-    )
+    # WebDriverWait(browser, 10).until(
+    #     EC.presence_of_element_located(LoginPageLocators.LOGIN_EMAIL)
+    # )
     page.go_to_login_email()
     page.go_to_login_password()
     page.go_to_login_btn()

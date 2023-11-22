@@ -5,11 +5,19 @@ from UI.locators.login_page_locators import LoginPageLocators
 from UI.locators.planning_page_locators import PlanningPageLocators
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+import chromedriver_autoinstaller
 
+# @pytest.fixture(autouse=True)
+# def browser():
+#     browser = webdriver.Chrome()
+#     yield browser
+#     browser.quit()
 
 @pytest.fixture(autouse=True)
 def browser():
+    chromedriver_autoinstaller.install()
     browser = webdriver.Chrome()
+    browser.maximize_window()
     yield browser
     browser.quit()
 
