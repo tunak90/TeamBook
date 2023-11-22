@@ -1,5 +1,6 @@
 import pytest
 
+import urls
 from UI.pages.login_page import LoginPage
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -11,8 +12,7 @@ import os
 
 
 def test_login_positive(browser):
-    link = "https://web.teambooktest.com/login"
-    page = LoginPage(browser, link)
+    page = LoginPage(browser, urls.LINK_LOGIN)
     page.open()
     # WebDriverWait(browser, 10).until(
     #     EC.presence_of_element_located(LoginPageLocators.LOGIN_EMAIL)
@@ -44,7 +44,7 @@ def test_login_positive(browser):
 
 
 def test_go_to_registration_page(browser):
-    page = LoginPage(browser, os.environ['LINK_LOGIN'])
+    page = LoginPage(browser, urls.LINK_LOGIN)
     page.open()
     WebDriverWait(browser, 10).until(
         EC.presence_of_element_located(LoginPageLocators.LINK_TO_REGISTRATION_PAGE)

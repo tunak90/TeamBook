@@ -1,3 +1,4 @@
+import urls
 from UI.pages.registration_page import RegistrationPage
 from UI.locators.planning_page_locators import PlanningPageLocators
 from UI.locators.registration_page_locators import RegistrationPageLocators
@@ -8,7 +9,7 @@ from conftest import browser
 
 
 # def test_registration_positive(browser):
-#     page = RegistrationPage(browser, os.environ['LINK_REGISTRATION'])
+#     page = RegistrationPage(browser, urls.LINK_REGISTRATION)
 #     page.open()
 #     WebDriverWait(browser, 10).until(
 #         EC.presence_of_element_located(RegistrationPageLocators.REG_FIRST_NAME)
@@ -29,7 +30,7 @@ from conftest import browser
 
 
 def test_registration_negative(browser):
-    page = RegistrationPage(browser, os.environ['LINK_REGISTRATION'])
+    page = RegistrationPage(browser, urls.LINK_REGISTRATION)
     page.open()
     WebDriverWait(browser, 10).until(
         EC.presence_of_element_located(RegistrationPageLocators.REG_FIRST_NAME)
