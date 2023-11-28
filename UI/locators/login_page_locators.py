@@ -9,6 +9,5 @@ class LoginPageLocators:
     LOGIN_BTN = (By.ID, "login_btn")
     GOOGLE_LOGIN = (By.ID, "google_login_btn")
     AZURE_LOGIN = (By.ID, "azure_login_btn")
-    LOGIN_ERROR_MESSAGE = (By.CSS_SELECTOR, "#root > div.App > div > div.login__right-side > div > "
-                                            "div.login-form__inputs > div.form-error__error-message.undefined > "
+    LOGIN_ERROR_MESSAGE = (By.CSS_SELECTOR, "div.login-form__inputs > div.form-error__error-message.undefined > "
                                             "div > p.form-error__error-text")
