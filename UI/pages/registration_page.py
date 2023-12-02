@@ -28,9 +28,9 @@ class RegistrationPage(BasePage):
         organization.send_keys("QALearning")
 
     def go_to_reg_password(self):
-        password = self.browser.find_element(*RegistrationPageLocators.REG_PASSWORD)
-        password.clear()
-        password.send_keys(os.environ['REG_PASSWORD'])
+        reg_password = self.browser.find_element(*RegistrationPageLocators.REG_PASSWORD)
+        reg_password.clear()
+        reg_password.send_keys(os.environ['REG_PASSWORD'])
 
     def go_to_reg_checkbox(self):
         checkbox = self.browser.find_element(*RegistrationPageLocators.REG_CHECKBOX)

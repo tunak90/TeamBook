@@ -8,15 +8,17 @@ from selenium.webdriver.support import expected_conditions as EC
 from UI.locators.login_page_locators import LoginPageLocators
 from UI.locators.registration_page_locators import RegistrationPageLocators
 from UI.locators.planning_page_locators import PlanningPageLocators
+import data
 
 
-@allure.feature('login')
+@allure.feature('Login')
 @allure.story('Login with valid email and valid password')
 @allure.severity('blocker')
 @pytest.mark.smoke
 @pytest.mark.regression
 def test_login_positive(browser):
-    page = LoginPage(browser, urls.LINK_LOGIN)
+    page = (
+        LoginPage(browser, urls.LINK_LOGIN))
     page.open()
     with allure.step('Login with valid email'):
         page.go_to_login_email()
@@ -30,49 +32,55 @@ def test_login_positive(browser):
     assert user_menu.is_displayed()
 
 
-@allure.feature('login')
+@allure.feature('Login')
 @allure.story('Login with invalid email and valid password')
 @allure.severity('critical')
 @pytest.mark.smoke
 @pytest.mark.regression
-@pytest.mark.parametrize('email', ['12345@gmail.com', '@gmail.com', 'testgmail.com'])
+@pytest.mark.parametrize('email', [data.not_existed_email, data.invalid_email_1, data.invalid_email_2])
 def test_login_negative_email(browser, email):
     page = LoginPage(browser, urls.LINK_LOGIN)
     page.open()
     with allure.step(f'Login with invalid email: {email}'):
-        page.go_to_login_email()
+        login_email = browser.find_element(*LoginPageLocators.LOGIN_EMAIL)
+        login_email.clear()
+        login_email.send_keys(email)
         page.go_to_login_password()
         page.go_to_login_btn()
     with allure.step("Verify error message is displayed"):
         error_message = WebDriverWait(browser, 10).until(
              EC.presence_of_element_located(LoginPageLocators.LOGIN_ERROR_MESSAGE)
         )
+        text_of_error_message = error_message.text
 
-    assert error_message.is_displayed()
+    assert text_of_error_message == "Wrong email or password!"
 
 
-@allure.feature('login')
+@allure.feature('Login')
 @allure.story('Login with valid email and invalid password')
 @allure.severity('critical')
 @pytest.mark.smoke
 @pytest.mark.regression
-@pytest.mark.parametrize('password', ['a1234567!', 'A1234567'])
+@pytest.mark.parametrize('password', [data.incorrect_password_1, data.incorrect_password_2])
 def test_login_negative_password(browser, password):
     page = LoginPage(browser, urls.LINK_LOGIN)
     page.open()
     with allure.step(f'Login with invalid password: {password}'):
         page.go_to_login_email()
-        page.go_to_login_password()
+        login_password = browser.find_element(*LoginPageLocators.LOGIN_PASSWORD)
+        login_password.clear()
+        login_password.send_keys(password)
         page.go_to_login_btn()
     with allure.step("Verify error message is displayed"):
         error_message = WebDriverWait(browser, 10).until(
             EC.presence_of_element_located(LoginPageLocators.LOGIN_ERROR_MESSAGE)
         )
+        text_of_error_message = error_message.text
 
-    assert error_message.is_displayed()
+    assert text_of_error_message == "Wrong email or password!"
 
 
-@allure.feature('registration')
+@allure.feature('Registration')
 @allure.severity('blocker')
 @pytest.mark.smoke
 @pytest.mark.regression
