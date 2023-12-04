@@ -1,4 +1,5 @@
 import pytest
+from allure_commons.types import AttachmentType
 
 import urls
 from UI.pages.registration_page import RegistrationPage
@@ -20,7 +21,7 @@ import data
 def test_registration_positive(browser):
     page = RegistrationPage(browser, urls.LINK_REGISTRATION)
     page.open()
-    with allure.step(f'Registration with valid email'):
+    with allure.step('Registration with valid email'):
         page.go_to_reg_first_name()
         page.go_to_reg_last_name()
         page.go_to_reg_business_email()
@@ -33,6 +34,8 @@ def test_registration_positive(browser):
         user_menu = WebDriverWait(browser, 10).until(
             EC.presence_of_element_located(PlanningPageLocators.USER_MENU)
         )
+    with allure.step('Make screenshot'):
+        allure.attach(browser.get_screenshot_as_png(), name='result1', attachment_type=AttachmentType.PNG)
 
     assert user_menu.is_displayed()
 
@@ -59,7 +62,8 @@ def test_registration_negative_existed_email(browser):
         error_message = WebDriverWait(browser, 10).until(
             EC.presence_of_element_located(RegistrationPageLocators.REG_ERROR_MESSAGE)
         )
-
+    with allure.step('Make screenshot'):
+        allure.attach(browser.get_screenshot_as_png(), name='result2', attachment_type=AttachmentType.PNG)
         text_of_error_message = error_message.text
 
     assert text_of_error_message == ("An account with this email address already exist. "
@@ -89,7 +93,8 @@ def test_registration_negative_email(browser, email):
         error_message = WebDriverWait(browser, 10).until(
             EC.presence_of_element_located(RegistrationPageLocators.REG_ERROR_MESSAGE)
         )
-
+    with allure.step('Make screenshot'):
+        allure.attach(browser.get_screenshot_as_png(), name='result3', attachment_type=AttachmentType.PNG)
         text_of_error_message = error_message.text
 
     assert text_of_error_message == "Email is not valid."
@@ -119,6 +124,8 @@ def test_registration_negative_password_not_8_characters(browser):
         error_message = WebDriverWait(browser, 10).until(
             EC.presence_of_element_located(RegistrationPageLocators.REG_ERROR_MESSAGE)
         )
+    with allure.step('Make screenshot'):
+        allure.attach(browser.get_screenshot_as_png(), name='result4', attachment_type=AttachmentType.PNG)
         text_of_error_message = error_message.text
 
     assert text_of_error_message == "Password should contain 8 or more characters"
@@ -149,6 +156,8 @@ def test_registration_negative_password(browser, password):
         alert = WebDriverWait(browser, 10).until(
             EC.Alert
         )
+    with allure.step('Make screenshot'):
+        allure.attach(browser.get_screenshot_as_png(), name='result5', attachment_type=AttachmentType.PNG)
 
     assert alert
     alert.accept()

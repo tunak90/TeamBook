@@ -1,5 +1,6 @@
 import allure
 import pytest
+from allure_commons.types import AttachmentType
 
 import urls
 from UI.pages.login_page import LoginPage
@@ -17,8 +18,7 @@ import data
 @pytest.mark.smoke
 @pytest.mark.regression
 def test_login_positive(browser):
-    page = (
-        LoginPage(browser, urls.LINK_LOGIN))
+    page = LoginPage(browser, urls.LINK_LOGIN)
     page.open()
     with allure.step('Login with valid email'):
         page.go_to_login_email()
@@ -28,6 +28,8 @@ def test_login_positive(browser):
         user_menu = WebDriverWait(browser, 10).until(
             EC.presence_of_element_located(PlanningPageLocators.USER_MENU)
         )
+    with allure.step('Make screenshot'):
+        allure.attach(browser.get_screenshot_as_png(), name='result6', attachment_type=AttachmentType.PNG)
 
     assert user_menu.is_displayed()
 
@@ -51,6 +53,8 @@ def test_login_negative_email(browser, email):
         error_message = WebDriverWait(browser, 10).until(
              EC.presence_of_element_located(LoginPageLocators.LOGIN_ERROR_MESSAGE)
         )
+    with allure.step('Make screenshot'):
+        allure.attach(browser.get_screenshot_as_png(), name='result7', attachment_type=AttachmentType.PNG)
         text_of_error_message = error_message.text
 
     assert text_of_error_message == "Wrong email or password!"
@@ -75,6 +79,8 @@ def test_login_negative_password(browser, password):
         error_message = WebDriverWait(browser, 10).until(
             EC.presence_of_element_located(LoginPageLocators.LOGIN_ERROR_MESSAGE)
         )
+    with allure.step('Make screenshot'):
+        allure.attach(browser.get_screenshot_as_png(), name='result8', attachment_type=AttachmentType.PNG)
         text_of_error_message = error_message.text
 
     assert text_of_error_message == "Wrong email or password!"
@@ -93,5 +99,7 @@ def test_go_to_registration_page(browser):
         reg_first_name = WebDriverWait(browser, 10).until(
             EC.presence_of_element_located(RegistrationPageLocators.REG_FIRST_NAME)
         )
+    with allure.step('Make screenshot'):
+        allure.attach(browser.get_screenshot_as_png(), name='result9', attachment_type=AttachmentType.PNG)
 
     assert reg_first_name.is_displayed()
