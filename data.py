@@ -8,3 +8,15 @@ invalid_password_2 = '12345678'
 invalid_password_3 = 'sdfghjklcvb'
 incorrect_password_1 = 'a1234567!'
 incorrect_password_2 = 'A1234567'
+
+
+invalid_name_of_team_1 = ""
+invalid_name_of_team_2 = " "
+invalid_name_of_team_3 = "qa"
+invalid_name_of_team_4 = "qa123456789876543210alhtdgejdss"
+valid_name_of_team = 'qa_team'
+valid_name_of_team_1 = "qa123456789876543210alhtdgejds"
+valid_name_of_team_2 = "qaL"
+
+
+

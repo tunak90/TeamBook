@@ -16,3 +16,5 @@ class PlanningPageLocators:
     CANCEL_TEAM_BTN = (By.CSS_SELECTOR, "div > div.MuiDialogContent-root.css-1ty026z > p > div.manage-team-dialog__"
                                         "team-row.creation > div:nth-child(2) > img:nth-child(2)")
     ROW_OF_TEAM = (By.CLASS_NAME, "manage-team-dialog__team-row")
+    ERROR_MESSAGE_NAME = (By.CSS_SELECTOR, "div.MuiDialogContent-root.css-1ty026z > p > div.form-error__error-"
+                                           "message.undefined > div > p.form-error__error-text")

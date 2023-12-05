@@ -1,3 +1,5 @@
+import uuid
+
 import pytest
 from allure_commons.types import AttachmentType
 
@@ -35,7 +37,8 @@ def test_registration_positive(browser):
             EC.presence_of_element_located(PlanningPageLocators.USER_MENU)
         )
     with allure.step('Make screenshot'):
-        allure.attach(browser.get_screenshot_as_png(), name='result1', attachment_type=AttachmentType.PNG)
+        e = str(uuid.uuid4().clock_seq)
+        allure.attach(browser.get_screenshot_as_png(), name='result' + e, attachment_type=AttachmentType.PNG)
 
     assert user_menu.is_displayed()
 
@@ -63,7 +66,8 @@ def test_registration_negative_existed_email(browser):
             EC.presence_of_element_located(RegistrationPageLocators.REG_ERROR_MESSAGE)
         )
     with allure.step('Make screenshot'):
-        allure.attach(browser.get_screenshot_as_png(), name='result2', attachment_type=AttachmentType.PNG)
+        e = str(uuid.uuid4().clock_seq)
+        allure.attach(browser.get_screenshot_as_png(), name='result' + e, attachment_type=AttachmentType.PNG)
         text_of_error_message = error_message.text
 
     assert text_of_error_message == ("An account with this email address already exist. "
@@ -94,7 +98,8 @@ def test_registration_negative_email(browser, email):
             EC.presence_of_element_located(RegistrationPageLocators.REG_ERROR_MESSAGE)
         )
     with allure.step('Make screenshot'):
-        allure.attach(browser.get_screenshot_as_png(), name='result3', attachment_type=AttachmentType.PNG)
+        e = str(uuid.uuid4().clock_seq)
+        allure.attach(browser.get_screenshot_as_png(), name='result' + e, attachment_type=AttachmentType.PNG)
         text_of_error_message = error_message.text
 
     assert text_of_error_message == "Email is not valid."
@@ -125,7 +130,8 @@ def test_registration_negative_password_not_8_characters(browser):
             EC.presence_of_element_located(RegistrationPageLocators.REG_ERROR_MESSAGE)
         )
     with allure.step('Make screenshot'):
-        allure.attach(browser.get_screenshot_as_png(), name='result4', attachment_type=AttachmentType.PNG)
+        e = str(uuid.uuid4().clock_seq)
+        allure.attach(browser.get_screenshot_as_png(), name='result' + e, attachment_type=AttachmentType.PNG)
         text_of_error_message = error_message.text
 
     assert text_of_error_message == "Password should contain 8 or more characters"
@@ -157,7 +163,8 @@ def test_registration_negative_password(browser, password):
             EC.Alert
         )
     with allure.step('Make screenshot'):
-        allure.attach(browser.get_screenshot_as_png(), name='result5', attachment_type=AttachmentType.PNG)
+        e = str(uuid.uuid4().clock_seq)
+        allure.attach(browser.get_screenshot_as_png(), name='result' + e, attachment_type=AttachmentType.PNG)
 
     assert alert
     alert.accept()
