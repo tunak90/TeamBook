@@ -1,0 +1,126 @@
+1. REGISTRATION:
+1.1 Check that the user can register with all fields filled in with valid data and the checkbox is checked:
+data: first name = Petya    last name = Petrov  business email = petrov@gmail.com   organization = QaTeam   password = A1234567!
+status: PASSED
+1.2 Check that user can not register with all empty filled in:
+status: NOT RUN
+1.3 Check that user can not register with only filled in first name field:
+data: first name = Petya
+status: NOT RUN
+1.4 Check that user can not register with only filled in last name field:
+data: last name = Petrov
+status: NOT RUN
+1.5 Check that user can not register with only filled in business email field:
+data: business email = petrov1@gmail.com
+status: NOT RUN
+1.6  Check that user can not register with only filled in organization field:
+data: organization = QaTeam
+status: NOT RUN
+1.7  Check that user can not register with only filled in password field:
+data: password = A1234567!
+status: NOT RUN
+1.8 Check that user can not register with only filled in business email and password:
+data: business email = petrov1@gmail.com    password = A1234567!
+status: NOT RUN
+1.9 Check that user can not register with only filled in business email, password and first name:
+data: business email = petrov1@gmail.com    password = A1234567!    first name =  Petya
+status: NOT RUN
+1.10 Check that user can not register with only filled in business email, password and last name:
+data: business email = petrov1@gmail.com    password = A1234567!    last name =  Petrov
+status: NOT RUN
+1.11 Check that user can not register with only filled in business email, password, first name and last name:
+data: business email = petrov1@gmail.com    password = A1234567!    first name = Petya    last name =  Petrov
+status: NOT RUN
+1.12 Check that user can not register with invalid business email(without @) filled in:
+data: First name = Petya    last name = Petrov  business email = testgmail.com  organization = QaTeam   password = A1234567!
+status: PASSED
+1.13 Check that user can not register with invalid business email filled in:
+data: First name = Petya    last name = Petrov   business email = @gmail.com    organization = QaTeam   password = A1234567!
+status: PASSED
+1.13 Check that user can not register with filled in existed business email:
+data:  First name = Petya    last name = Petrov   business email = test@gmail.com    organization = QaTeam   password = A1234567!
+status: PASSED
+1.14  Check that the user can register with all fields filled in with valid data and the checkbox is unchecked:
+data: first name = Petya    last name = Petrov  business email = petrov@gmail.com   organization = QaTeam   password = A1234567!
+status: NOT RUN
+1.15  Check that the user can not register with invalid first name field(1 character) filled in:
+data: first name = a    last name = Petrov  business email = petrov@gmail.com   organization = QaTeam   password = A1234567!
+status: NOT RUN
+1.15  Check that the user can not register with invalid first name field(21 character) filled in:
+data: first name = S123456789asdfghjklbb   last name = Petrov  business email = petrov@gmail.com   organization = QaTeam   password = A1234567!
+status: NOT RUN
+1.16  Check that the user can register with valid first name field(2 character) filled in:
+data: first name = S1  last name = Petrov  business email = petrov@gmail.com   organization = QaTeam   password = A1234567!
+status: NOT RUN
+1.17  Check that the user can register with valid first name field(20 character) filled in:
+data: first name = S123456789asdfghjklbb   last name = Petrov  business email = petrov@gmail.com   organization = QaTeam   password = A1234567!
+status: NOT RUN
+1.18  Check that the user can not register with invalid last name field(1 character) filled in:
+data: first name = Petya    last name = P  business email = petrov@gmail.com   organization = QaTeam   password = A1234567!
+status: NOT RUN
+1.19  Check that the user can not register with invalid last name field(21 character) filled in:
+data: first name = Petya   last name = S123456789asdfghjklbb  business email = petrov@gmail.com   organization = QaTeam   password = A1234567!
+status: NOT RUN
+1.20  Check that the user can register with valid last name field(2 character) filled in:
+data: first name = Petya  last name = Pe  business email = petrov@gmail.com   organization = QaTeam   password = A1234567!
+status: NOT RUN
+1.21  Check that the user can register with valid last name field(20 character) filled in:
+data: first name = Petya   last name = S123456789asdfghjklb  business email = petrov@gmail.com   organization = QaTeam   password = A1234567!
+status: NOT RUN
+1.22  Check that the user can not register with invalid organization field(2 character) filled in:
+data: first name = Petya   last name = Petrov  business email = petrov@gmail.com   organization = Qa   password = A1234567!
+status: NOT RUN
+1.23  Check that the user can not register with invalid organization field(31 character) filled in:
+data: first name = Petya   last name = Petrov  business email = petrov@gmail.com   organization = s1234567899876543210sglusktfhaq   password = A1234567!
+status: NOT RUN
+1.24  Check that the user can register with valid organization field(3 character) filled in:
+data: first name = Petya   last name = Petrov  business email = petrov@gmail.com   organization = QAL   password = A1234567!
+status: NOT RUN
+1.25  Check that the user can register with valid organization field(30 character) filled in:
+data: first name = Petya   last name = Petrov  business email = petrov@gmail.com   organization = s1234567899876543210sglusktfha   password = A1234567!
+status: NOT RUN
+1.26  Check that the user can not register with invalid password field(7 characters) filled in:
+data: first name = Petya   last name = Petrov  business email = petrov@gmail.com   organization = QaTeam   password = A123456
+status: PASSED
+1.26  Check that the user can not register with invalid password field(only numbers) filled in:
+data: first name = Petya   last name = Petrov  business email = petrov@gmail.com   organization = QaTeam   password = 12345678
+status: PASSED
+1.26  Check that the user can not register with invalid password field(only letters) filled in:
+data: first name = Petya   last name = Petrov  business email = petrov@gmail.com   organization = QaTeam   password = sdfghjklcvb
+status: PASSED
+
+
+2. LOGIN
+2.1 Check that the user can login with all fields filled in with correct data:
+data: email = test@gmail.com    password = A1234567!
+status: PASSED
+2.2 Check that the user can not login with only email field filled in:
+data: email = test@gmail.com
+status: NOT RUN
+2.3 Check that the user can not login with only password field filled in:
+data: password = A1234567!
+status: NOT RUN
+2.4 Check that the user can not login with not existed email field filled in:
+data: email = 12345@gmail.com
+status: PASSED
+2.5 Check that the user can not login with invalid email field filled in:
+data: email = @gmail.com
+status: PASSED
+2.5 Check that the user can not login with invalid email field filled in:
+data: email = testgmail.com
+status: PASSED
+2.6 Check that the user can not login with invalid password field filled in:
+data: password = A123456
+status: PASSED
+2.7 Check that the user can not login with invalid password field filled in:
+data: password = 12345678
+status: PASSED
+2.8 Check that the user can not login with invalid password field filled in:
+data: password = sdfghjklcvb
+status: PASSED
+2.9 Check that the user can not login with incorrect password field filled in:
+data: password = a1234567!
+status: PASSED
+2.10 Check that the user can not login with incorrect password field filled in:
+data: password = A1234567
+status: PASSED
