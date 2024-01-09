@@ -1,11 +1,10 @@
 import pytest
 from selenium import webdriver
-
+from selenium.webdriver.support.wait import WebDriverWait
 import urls
-from UI.pages.login_page import LoginPage
 from UI.locators.planning_page_locators import PlanningPageLocators
-from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from UI.pages.login_page import LoginPage
 import chromedriver_autoinstaller
 
 
@@ -31,5 +30,8 @@ def login(browser):
     page.go_to_login_email()
     page.go_to_login_password()
     page.go_to_login_btn()
+    WebDriverWait(browser, 10).until(
+        EC.presence_of_element_located(PlanningPageLocators.USER_MENU)
+    )
 
 
